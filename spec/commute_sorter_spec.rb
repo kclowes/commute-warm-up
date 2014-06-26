@@ -9,7 +9,39 @@ describe CommuteSorter do
     ]
     actual = CommuteSorter.new(input).sort_by_name
     expected = {
-      "Elsa" =>
+      "Elsa" => [
+        {
+          week: 1,
+          day: "Thursday",
+          mode: "Drive",
+          inbound: 28,
+          outbound: 60,
+          distance: 24
+        }
+      ],
+      "Emily" => [
+        {
+          week: 4,
+          day: "Monday",
+          mode: "Walk",
+          inbound: 12,
+          outbound: 15,
+          distance: 0.65
+        }
+      ],
+    }
+    expect(actual).to eq expected
+  end
+
+  it 'will add more than one entry to the end of the person\'s hash' do
+    input = [
+      ['Emily', 4, 'Monday', 'Walk', 12, 15, 0.65],
+      ['Elsa', 1, 'Thursday', 'Drive', 28, 60, 24],
+      ['Emily', 5, 'Tuesday', 'Walk', 12, 15, 0.65]
+    ]
+    actual = CommuteSorter.new(input).sort_by_name
+    expected = {
+      "Elsa" => [
         {
           week: 1,
           day: "Thursday",
@@ -18,16 +50,27 @@ describe CommuteSorter do
           outbound: 60,
           distance: 24
         },
-      "Emily" =>
-        {
-          week: 4,
-          day: "Monday",
-          mode: "Walk",
-          inbound: 12,
-          outbound: 15,
-          distance: 0.65
-        },
+      ],
+    "Emily" => [
+      {
+        week: 4,
+        day: "Monday",
+        mode: "Walk",
+        inbound: 12,
+        outbound: 15,
+        distance: 0.65
+      },
+      {
+        week: 5,
+        day: "Tuesday",
+        mode: "Walk",
+        inbound: 12,
+        outbound: 15,
+        distance: 0.65
+      },
+    ]
     }
     expect(actual).to eq expected
   end
 end
+
