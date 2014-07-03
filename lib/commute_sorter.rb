@@ -25,4 +25,13 @@ class CommuteSorter
     end
     hash.sort.to_h
   end
+
+  def sort_by_week_and_day
+    sort_by_name.each do |_, info_hash|
+      info_hash.sort_by! do |info|
+        by_day = DateTime.parse(info[:day]).wday
+        [info[:week], by_day]
+      end
+    end
+  end
 end
