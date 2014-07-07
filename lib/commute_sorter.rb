@@ -4,26 +4,25 @@ class CommuteSorter
   end
 
   def sort_by_name
-    hash = Hash.new
+    result = Hash.new
     @input.each do |array|
-      if hash.has_key?(array.first)
-        hash[array.first] << {:week => array[1],
+      if result.has_key?(array.first)
+        result[array.first] << {:week => array[1],
                               :day => array[2],
                               :mode => array[3],
                               :inbound => array[4],
                               :outbound => array[5],
                               :distance => array[6]}
       else
-        hash[array.first] = [{:week => array[1],
+        result[array.first] = [{:week => array[1],
                               :day => array[2],
                               :mode => array[3],
                               :inbound => array[4],
                               :outbound => array[5],
                               :distance => array[6]}]
-
       end
     end
-    hash.sort.to_h
+    result.sort.to_h
   end
 
   def sort_by_week_and_day
@@ -34,4 +33,5 @@ class CommuteSorter
       end
     end
   end
+
 end
